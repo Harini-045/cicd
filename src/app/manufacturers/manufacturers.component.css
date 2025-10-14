@@ -1,0 +1,11 @@
+.manfTable {
+    width: 100%;
+}
+.mat-header-cell {
+    font-weight: bolder;
+}
+
+.header-class {
+    color: #873030 !important;
+    background: transparent!important;
+}
