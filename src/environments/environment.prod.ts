@@ -6,9 +6,11 @@ export const environment = {
   getManfUrl: 'manufacturer/get',
   updManfUrl: 'manufacturer/create-update',
   getPrdUrl: 'products/get',
+  deletePrdUrl: '/product/delete',
   updPrdUrl: 'products/create-update',
   getStateUrl: 'data/getStates',
   getCitiesUrl: 'data/getCities',
   getCatgUrl: 'data/getCategory',
-  genXcelUrl: 'data/generateXcel/'
+  genXcelUrl: 'data/generateXcel/',
+  getOverviewUrl: '/overview'               
 };
