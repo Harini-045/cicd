@@ -1,0 +1,44 @@
+# ---------- SIMPLE GITLAB CI PIPELINE FOR ANGULAR ----------
+
+stages:
+  - install
+  - build
+
+# Cache node_modules to speed up subsequent builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+# Global variables
+variables:
+  NODE_ENV: production
+  DIST_DIR: dist/
+  BUILD_CONFIG: production
+  CI: "true"
+
+# ---------------- STAGE 1: INSTALL DEPENDENCIES ----------------
+install_dependencies:
+  stage: install
+  image: node:18-bullseye  # Node 18 with build tools
+  script:
+    - echo "Installing dependencies..."
+    - npm install --legacy-peer-deps
+  artifacts:
+    paths:
+      - node_modules/
+  only:
+    - main
+
+# ---------------- STAGE 2: BUILD APP ----------------
+build_app:
+  stage: build
+  image: node:18-bullseye
+  script:
+    - echo "Building Angular app..."
+    - npm run build -- --configuration $BUILD_CONFIG
+  artifacts:
+    paths:
+      - $DIST_DIR
+  only:
+    - main
